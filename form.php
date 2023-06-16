@@ -22,11 +22,6 @@
     <input id="hcf_user_ratings" type="text" name="hcf_user_ratings"
       value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_user_ratings', true)); ?>">
   </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_strain_type">Strain Type</label>
-    <input id="hcf_strain_type" type="text" name="hcf_strain_type"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_strain_type', true)); ?>">
-  </p>
 
   <!-- // THC  -->
   <p class="meta-options hcf_field">
@@ -45,91 +40,54 @@
       value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_CBG', true)); ?>">
   </p>
 
-  <!-- // Terpene -->
-  <p class="meta-options hcf_field">
-    <label for="hcf_dom_terp">Dominate Terp </label>
-    <input id="hcf_dom_terp" type="text" name="hcf_dom_terp"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_dom_terp', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_other_terp_1">Other Terp 1 </label>
-    <input id="hcf_other_terp_1" type="text" name="hcf_other_terp_1"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_other_terp_1', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_other_terp_2">Other Terp 2 </label>
-    <input id="hcf_other_terp_2" type="text" name="hcf_other_terp_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_other_terp_2', true)); ?>">
-  </p>
+  <?php
+  $field_names = [
+    'hcf_strain_type',
+    'hcf_dom_terp',
+    'hcf_other_terp_1',
+    'hcf_other_terp_2',
+    'hcf_flav_1',
+    'hcf_flav_2',
+    'hcf_flav_3',
+    'hcf_feel_1',
+    'hcf_feel_2',
+    'hcf_feel_3',
+    'hcf_help_1',
+    'hcf_help_2',
+    'hcf_help_3',
+    'hcf_neg_1',
+    'hcf_neg_2',
+    'hcf_neg_3',
+    'hcf_grow_dif',
+    'hcf_grow_avg_hight',
+    'hcf_grow_avg_yeild',
+    'hcf_grow_time',
+  ];
 
-  <!-- // Flavor -->
-  <p class="meta-options hcf_field">
-    <label for="hcf_flav_1">Flavor 1 </label>
-    <input name="hcf_flav_1" id="hcf_flav_1" type="select" placeholder='Select an item' multiple=false options=[
-      blueberry, cherry, coconut, grape,
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_flav_1', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_flav_2">Flavor 2 </label>
-    <input id="hcf_flav_2" type="text" name="hcf_flav_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_flav_2', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_flav_3">Flavor 3 </label>
-    <input id="hcf_flav_3" type="text" name="hcf_flav_3"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_flav_3', true)); ?>">
-  </p>
+  foreach ($field_names as $field_name) {
+    $field_value = get_post_meta(get_the_ID(), $field_name, true);
 
-  <!-- // Feel -->
-  <p class="meta-options hcf_field">
-    <label for="hcf_feel_1">Feel 1 </label>
-    <input id="hcf_feel_1" type="text" name="hcf_feel_1"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_feel_1', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_feel_2">Feel 2 </label>
-    <input id="hcf_feel_2" type="text" name="hcf_feel_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_feel_2', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_feel_3">Feel 3 </label>
-    <input id="hcf_feel_3" type="text" name="hcf_feel_3"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_feel_3', true)); ?>">
-  </p>
+    // Output the HTML for the input field
+    ?>
+    <p class="meta-options hcf_field">
+      <label for="<?php echo $field_name; ?>"><?php echo ucfirst(str_replace('_', ' ', $field_name)); ?></label>
+      <select id="<?php echo $field_name; ?>" name="<?php echo $field_name; ?>" class="select2">
+        <?php
+        // Output the default option
+        echo '<option value=""></option>';
 
-  <!-- // Help -->
-  <p class="meta-options hcf_field">
-    <label for="hcf_help_1">Help 1 </label>
-    <input id="hcf_help_1" type="text" name="hcf_help_1"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_help_1', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_help_2">Help 2 </label>
-    <input id="hcf_help_2" type="text" name="hcf_help_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_help_2', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_help_3">Help 3 </label>
-    <input id="hcf_help_3" type="text" name="hcf_help_3"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_help_3', true)); ?>">
-  </p>
-
-  <!-- // Negative -->
-  <p class="meta-options hcf_field">
-    <label for="hcf_neg_1">Negative 1 </label>
-    <input id="hcf_neg_1" type="text" name="hcf_neg_1"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_neg_1', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_neg_2">Negative 2 </label>
-    <input id="hcf_neg_2" type="text" name="hcf_neg_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_neg_2', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_neg_3">Negative 3 </label>
-    <input id="hcf_neg_3" type="text" name="hcf_neg_3"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_neg_3', true)); ?>">
-  </p>
+        // Output the options from the tags
+        $tags = get_tags(array('hide_empty' => false));
+        foreach ($tags as $tag) {
+          $selected = ($tag->name == $field_value) ? 'selected' : '';
+          echo "<option value='{$tag->name}' {$selected}>{$tag->name}</option>";
+        }
+        ?>
+      </select>
+    </p>
+    <?php
+  }
+  ?>
 
   <!-- //hcf_seed_link  -->
   <p class="meta-options hcf_field">
@@ -157,29 +115,6 @@
     <label for="hcf_child_2">Child 2 </label>
     <input id="hcf_child_2" type="text" name="hcf_child_2"
       value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_parent_1', true)); ?>">
-  </p>
-
-  <!-- // grow  -->
-  <p class="meta-options hcf_field">
-    <label for="hcf_grow_dif">Grow Dif </label>
-    <input id="hcf_grow_dif" type="text" name="hcf_grow_dif"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_grow_dif', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_grow_avg_hight">Grow Avg Hight </label>
-    <input id="hcf_grow_avg_hight" type="text" name="hcf_grow_avg_hight"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_grow_avg_hight', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_grow_avg_yeild">Grow Avg Yeild </label>
-    <input id="hcf_grow_avg_yeild" type="text" name="hcf_grow_avg_yeild"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_grow_avg_yeild', true)); ?>">
-  </p>
-  <p class="meta-options hcf_field">
-    <label for="hcf_grow_time">Grow Time </label>
-    <input id="hcf_grow_time" type="text" name="hcf_grow_time"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_grow_time', true)); ?>">
-
   </p>
 
 </div>
