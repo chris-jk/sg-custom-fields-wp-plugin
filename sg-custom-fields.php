@@ -50,7 +50,7 @@ function hcf_save_meta_box($post_id)
     'hcf_THC',
     'hcf_CBG',
     'hcf_CBD',
-    'hcf_dom_terp',
+    'hcf_dominate_terp',
     'hcf_other_terp_1',
     'hcf_other_terp_2',
     'hcf_flav_1',
@@ -78,7 +78,7 @@ function hcf_save_meta_box($post_id)
 
   // Add the field names for which you want to save the selected tags to post tags
   $tag_fields = [
-    'hcf_dom_terp',
+    'hcf_dominate_terp',
     'hcf_other_terp_1',
     'hcf_other_terp_2',
     'hcf_flav_1',

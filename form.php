@@ -43,7 +43,7 @@
   <?php
   $field_names = [
     'hcf_strain_type',
-    'hcf_dom_terp',
+    'hcf_dominate_terp',
     'hcf_other_terp_1',
     'hcf_other_terp_2',
     'hcf_flav_1',
@@ -74,7 +74,8 @@
       <select id="<?php echo $field_name; ?>" name="<?php echo $field_name; ?>" class="select2">
         <?php
         // Output the default option
-        echo '<option value=""></option>';
+        $selected_none = ($field_value === '') ? 'selected' : '';
+        echo '<option value="" ' . $selected_none . '>None</option>';
 
         // Output the options from the tags
         $tags = get_tags(array('hide_empty' => false));
@@ -87,6 +88,7 @@
     </p>
     <?php
   }
+
   ?>
 
   <!-- //hcf_seed_link  -->
