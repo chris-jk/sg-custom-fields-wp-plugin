@@ -77,18 +77,17 @@
         $selected_none = ($field_value === '') ? 'selected' : '';
         echo '<option value="" ' . $selected_none . '>None</option>';
 
-        // Output the options from the tags
-        $tags = get_tags(array('hide_empty' => false));
-        foreach ($tags as $tag) {
-          $selected = ($tag->name == $field_value) ? 'selected' : '';
-          echo "<option value='{$tag->name}' {$selected}>{$tag->name}</option>";
+        // Output the options from the categories
+        $categories = get_categories(array('hide_empty' => false));
+        foreach ($categories as $category) {
+          $selected = ($category->name == $field_value) ? 'selected' : '';
+          echo "<option value='{$category->name}' {$selected}>{$category->name}</option>";
         }
         ?>
       </select>
     </p>
     <?php
   }
-
   ?>
 
   <!-- //hcf_seed_link  -->
@@ -106,17 +105,16 @@
   <p class="meta-options hcf_field">
     <label for="hcf_parent_2">Parent 2 </label>
     <input id="hcf_parent_2" type="text" name="hcf_parent_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_parent_1', true)); ?>">
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_parent_2', true)); ?>">
   </p>
   <p class="meta-options hcf_field">
     <label for="hcf_child_1">Child 1 </label>
     <input id="hcf_child_1" type="text" name="hcf_child_1"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_parent_1', true)); ?>">
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_child_1', true)); ?>">
   </p>
   <p class="meta-options hcf_field">
     <label for="hcf_child_2">Child 2 </label>
     <input id="hcf_child_2" type="text" name="hcf_child_2"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_parent_1', true)); ?>">
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_child_2', true)); ?>">
   </p>
-
 </div>

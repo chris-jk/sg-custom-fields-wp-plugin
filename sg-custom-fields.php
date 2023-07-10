@@ -43,11 +43,13 @@ function hcf_save_meta_box($post_id)
   // Custom fields
   $fields = [
     'hcf_aka',
-    'hcf_user_ratings',
+    'hcf_star_ratings',
+    'hcf_ratings_amount',
     'hcf_strain_type',
     'hcf_THC',
     'hcf_CBG',
     'hcf_CBD',
+    'hcf_CBN',
     'hcf_dominate_terp',
     'hcf_other_terp_1',
     'hcf_other_terp_2',
@@ -72,10 +74,11 @@ function hcf_save_meta_box($post_id)
     'hcf_grow_avg_hight',
     'hcf_grow_avg_yeild',
     'hcf_grow_time',
+    'hcf_grow_notes'
   ];
 
-  // Add the field names for which you want to save the selected tags to post tags
-  $tag_fields = [
+  // Add the field names for which you want to save the selected to categories
+  $category_fields = [
     'hcf_dominate_terp',
     'hcf_other_terp_1',
     'hcf_other_terp_2',
@@ -92,36 +95,31 @@ function hcf_save_meta_box($post_id)
     'hcf_neg_2',
     'hcf_neg_3',
   ];
+}
+// Array to store the selected categories
+$selected_categories = [];
 
-  // Array to store the selected tags
-  $selected_tags = [];
+foreach ($fields as $field) {
+  if (isset($_POST[$field])) {
+    $field_value = sanitize_text_field($_POST[$field]);
 
-  foreach ($fields as $field) {
-    if (isset($_POST[$field])) {
-      $field_value = sanitize_text_field($_POST[$field]);
+    // Save the field value as post meta
+    update_post_meta($post_id, $field, $field_value);
 
-      // Save the field value as post meta
-      update_post_meta($post_id, $field, $field_value);
-
-      // If the field is in the tag_fields array, add it to the selected tags
-      if (in_array($field, $tag_fields)) {
-        $selected_tags[] = $field_value;
-      }
+    // If the field is in the category_fields array, add it to the selected categories
+    if (in_array($field, $category_fields)) {
+      $selected_categories[] = $field_value;
     }
-  }
-
-  // Clear the existing tags
-  wp_set_post_terms($post_id, [], 'post_tag');
-
-  // Set the selected tags as post tags
-  if (!empty($selected_tags)) {
-    wp_set_post_terms($post_id, $selected_tags, 'post_tag');
   }
 }
 
-add_action('save_post', 'hcf_save_meta_box');
+// Clear the existing categories
+wp_set_post_terms($post_id, [], 'category');
 
-
+// Set the selected categories as post categories
+if (!empty($selected_categories)) {
+  wp_set_post_terms($post_id, $selected_categories, 'category');
+}
 
 
 /**
@@ -131,11 +129,13 @@ function hcf_register_rest_fields()
 {
   $fields = [
     'hcf_aka',
-    'hcf_user_ratings',
+    'hcf_star_ratings',
+    'hcf_ratings_amount',
     'hcf_strain_type',
     'hcf_THC',
     'hcf_CBG',
     'hcf_CBD',
+    'hcf_CBN',
     'hcf_dominate_terp',
     'hcf_other_terp_1',
     'hcf_other_terp_2',
@@ -160,6 +160,7 @@ function hcf_register_rest_fields()
     'hcf_grow_avg_hight',
     'hcf_grow_avg_yeild',
     'hcf_grow_time',
+    'hcf_grow_notes'
   ];
 
   foreach ($fields as $field) {
