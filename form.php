@@ -1,15 +1,15 @@
 <div class="hcf_box">
   <style scoped>
-    .hcf_box {
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      grid-row-gap: 10px;
-      grid-column-gap: 20px;
-    }
+  .hcf_box {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 20px;
+  }
 
-    .hcf_field {
-      display: contents;
-    }
+  .hcf_field {
+    display: contents;
+  }
   </style>
 
   <p class="meta-options hcf_field">
@@ -18,9 +18,14 @@
       value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_aka', true)); ?>">
   </p>
   <p class="meta-options hcf_field">
-    <label for="hcf_user_ratings">User Ratings <small>1-5</small></label>
-    <input id="hcf_user_ratings" type="text" name="hcf_user_ratings"
-      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_user_ratings', true)); ?>">
+    <label for="hcf_star_ratings">User Ratings <small>1-5</small></label>
+    <input id="hcf_star_ratings" type="text" name="hcf_star_ratings"
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_star_ratings', true)); ?>">
+  </p>
+  <p class="meta-options hcf_field">
+    <label for="hcf_ratings_amount">User Ratings Amount<small>1-5</small></label>
+    <input id="hcf_ratings_amount" type="text" name="hcf_ratings_amount"
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_ratings_amount', true)); ?>">
   </p>
 
   <!-- // THC  -->
@@ -33,6 +38,11 @@
     <label for="hcf_CBD">CBD</label>
     <input id="hcf_CBD" type="number" name="hcf_CBD"
       value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_CBD', true)); ?>">
+  </p>
+  <p class="meta-options hcf_field">
+    <label for="hcf_CBN">CBN</label>
+    <input id="hcf_CBN" type="number" name="hcf_CBN"
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_CBN', true)); ?>">
   </p>
   <p class="meta-options hcf_field">
     <label for="hcf_CBG">CBG</label>
@@ -69,10 +79,10 @@
 
     // Output the HTML for the input field
     ?>
-    <p class="meta-options hcf_field">
-      <label for="<?php echo $field_name; ?>"><?php echo ucfirst(str_replace('_', ' ', $field_name)); ?></label>
-      <select id="<?php echo $field_name; ?>" name="<?php echo $field_name; ?>" class="select2">
-        <?php
+  <p class="meta-options hcf_field">
+    <label for="<?php echo $field_name; ?>"><?php echo ucfirst(str_replace('_', ' ', $field_name)); ?></label>
+    <select id="<?php echo $field_name; ?>" name="<?php echo $field_name; ?>" class="select2">
+      <?php
         // Output the default option
         $selected_none = ($field_value === '') ? 'selected' : '';
         echo '<option value="" ' . $selected_none . '>None</option>';
@@ -84,9 +94,9 @@
           echo "<option value='{$category->name}' {$selected}>{$category->name}</option>";
         }
         ?>
-      </select>
-    </p>
-    <?php
+    </select>
+  </p>
+  <?php
   }
   ?>
 
@@ -117,4 +127,12 @@
     <input id="hcf_child_2" type="text" name="hcf_child_2"
       value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_child_2', true)); ?>">
   </p>
+
+  <p class="meta-options hcf_field">
+    <label for="hcf_grow_notes">Grow Notes</label>
+    <input id="hcf_grow_notes" type="text" name="hcf_grow_notes"
+      value="<?php echo esc_attr(get_post_meta(get_the_ID(), 'hcf_grow_notes', true)); ?>">
+  </p>
+
+
 </div>
